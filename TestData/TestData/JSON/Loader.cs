@@ -12,7 +12,7 @@ using System.Data.SqlClient;
 namespace TestData.JSON
 {
 	//reads from JSON-files and populates SQL db
-	class Loader
+	public class Loader
 	{
 
 		public Loader()
@@ -51,9 +51,6 @@ namespace TestData.JSON
 			}
 		}
 		
-
-
-
-
+		
 	}
 }

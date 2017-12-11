@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TestData.JSON
 {
-	class Event
+	public class Event
 	{
 		public string Date { get; set; }
 		public string Description { get; set; }
@@ -17,7 +17,7 @@ namespace TestData.JSON
 		public string Granularity { get; set; }
 	}
 
-	class City
+	public class City
 	{
 		public string Name { get; set; }
 		public string Country { get; set; }

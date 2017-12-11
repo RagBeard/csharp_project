@@ -19,14 +19,13 @@ namespace TestData
 
 		public DBConnection()
 		{
-
 		}
+
 
 		public void TransactAll(List<SqlCommand> commands)
 		{			
 			using (connection = new SqlConnection(connectionString))
 			{
-
 				connection.Open();
 
 				var rows = 0;
@@ -35,63 +34,28 @@ namespace TestData
 				{
 					com.Connection = connection;
 
+					
 					rows += com.ExecuteNonQuery();
 				}
 
-				Console.WriteLine("Performed Multiple queries, total rows affected: {0}", rows);
+				Console.WriteLine("Performed Multiple Transact queries, total rows affected: {0}", rows);
 			}
 		}
 
-
-		//public void TransactAll(List<string> commands)
-		//{
-		//	SqlCommand cmd = new SqlCommand();
-			
-		//	// DO PARAMETERS @ 
-
-		//	using (connection = new SqlConnection(connectionString))
-		//	{
-
-		//		connection.Open();
-
-		//		var rows = 0;
-
-		//		foreach (var com in commands)
-		//		{
-		//			cmd.CommandText = com;
-		//			cmd.CommandType = CommandType.Text;
-		//			cmd.CreateParameter();
-		//			cmd.Connection = connection;
-					
-		//			rows += cmd.ExecuteNonQuery();
-		//		}
-
-		//		Console.WriteLine("Performed Multiple queries, total rows affected: ", rows);
-
-		//	}
-		//}
-
-		public void Transact(string commandText)
+		public void Transact(SqlCommand command)
 		{
-			SqlCommand cmd = new SqlCommand();
-
 			using (connection = new SqlConnection(connectionString))
 			{
-
 				connection.Open();
 
-				cmd.CommandText = commandText;
-				cmd.CommandType = CommandType.Text;
-				cmd.Connection = connection;
+				command.Connection = connection;
+				var rows = command.ExecuteNonQuery();
 
-
-				var rows = cmd.ExecuteNonQuery();
-
-				Console.WriteLine("Performing query: " + commandText);
-				Console.WriteLine("DB Transaction, rows affected: {0}", rows);				
-								
+				Console.WriteLine("Performed Transact query, total rows affected: {0}", rows);
 			}
 		}
+
+
 
 		public void Query(string commandText)
 		{
