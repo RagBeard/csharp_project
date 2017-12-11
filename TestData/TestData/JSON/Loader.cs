@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 using System.Data.SqlClient;
 
 
-namespace TestData
+namespace TestData.JSON
 {
 	//reads from JSON-files and populates SQL db
 	class Loader
