@@ -17,11 +17,14 @@ namespace TestData.JSON
 
 		public Loader()
 		{
+
 		}
 		
 
-		public void LoadFromJSON<T>(string path, out T result)
+		public bool LoadFromJSON<T>(string path, out T result)
 		{
+			bool success = true;
+
 			try
 			{
 				using (StreamReader file = File.OpenText(path))
@@ -36,6 +39,13 @@ namespace TestData.JSON
 					{
 						Console.WriteLine(jse.Message);
 						result = default(T);
+						success = false;
+					}
+					catch (Newtonsoft.Json.JsonReaderException jre)
+					{
+						Console.WriteLine(jre.Message);
+						result = default(T);
+						success = false;
 					}
 				}
 			}
@@ -43,12 +53,16 @@ namespace TestData.JSON
 			{
 				Console.WriteLine(fnfe.Message);
 				result = default(T);
+				success = false;
 			}
 			catch (ArgumentException ae)
 			{
 				Console.WriteLine(ae.Message);
 				result = default(T);
+				success = false;
 			}
+
+			return success;
 		}
 		
 		
