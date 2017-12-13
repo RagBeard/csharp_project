@@ -25,4 +25,10 @@ namespace TestData.JSON
 		public float Lng { get; set; }
 	}
 
+	public class Country
+	{
+		public string Name { get; set; }
+		public string Code { get; set; }
+	}
+
 }
